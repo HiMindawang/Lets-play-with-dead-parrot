@@ -1,5 +1,5 @@
 def main():
-    print("Hello from mins-python-project-template!")
+    print("Hello from pygumby!")
 
 
 if __name__ == "__main__":
