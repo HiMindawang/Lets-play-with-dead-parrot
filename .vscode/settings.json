@@ -1,0 +1,38 @@
+{
+    // Color theme
+    "workbench.colorTheme": "GitHub Light Default",
+
+    // Font
+    "editor.fontFamily": "JetBrains Mono, Menlo, Monaco",
+    "terminal.integrated.fontFamily": "JetBrains Mono, Menlo, Monaco",
+    "editor.fontSize": 12.5,
+    "terminal.integrated.fontSize": 12.5,
+    "editor.fontLigatures": true,
+    "terminal.integrated.fontLigatures.enabled": true,
+
+    // Indentation
+    "editor.detectIndentation": false,
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4,
+
+    // Lines
+    "editor.rulers": [ 88 ],
+    "editor.wordWrap": "off",
+
+    // Whitespace
+    "editor.renderWhitespace": "boundary",
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+
+    // Various
+    "explorer.sortOrder": "type",
+    "files.autoSave": "onFocusChange",
+    "files.exclude": {
+        "**/.git": false,
+    },
+
+    // Markdown
+    "[markdown]": {
+        "editor.wordWrap": "off",
+    },
+}

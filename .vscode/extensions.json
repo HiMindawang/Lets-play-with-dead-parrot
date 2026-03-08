@@ -1,0 +1,12 @@
+{
+    "recommendations": [
+        // Python
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.debugpy",
+
+        // Various
+        "github.github-vscode-theme",
+        "github.copilot-chat",
+    ]
+}
