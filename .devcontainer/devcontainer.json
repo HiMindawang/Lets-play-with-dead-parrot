@@ -1,5 +1,0 @@
-{
-    "name": "python",
-    "image": "mcr.microsoft.com/devcontainers/python:3.13-bullseye",
-    "postCreateCommand": "sh .devcontainer/post-create.sh"
-}
