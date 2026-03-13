@@ -5,8 +5,10 @@
         "ms-python.vscode-pylance",
         "ms-python.debugpy",
 
+        // Type checking
+        "ms-python.mypy-type-checker",
+
         // Various
         "github.github-vscode-theme",
-        "github.copilot-chat",
     ]
 }

@@ -31,6 +31,9 @@
         "**/.git": false,
     },
 
+    // Python
+    "mypy-type-checker.importStrategy": "fromEnvironment",
+
     // Markdown
     "[markdown]": {
         "editor.wordWrap": "off",
