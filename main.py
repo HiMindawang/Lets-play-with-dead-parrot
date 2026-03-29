@@ -2,21 +2,34 @@ import getpass
 import os
 
 import dotenv
-import dead_parrot as dp
+import dead_parrot as dp  # type: ignore[import-untyped]
 
 dotenv.load_dotenv()
 
 if not os.environ.get("OPENAI_API_KEY"):
     os.environ["OPENAI_API_KEY"] = getpass.getpass("Enter API key for OpenAI: ")
 
-ecb_ai_assistant: dp.AiAssistant = dp.DspyAiAssistant(
-    lm="openai/gpt-4o-mini",
-    embedder="openai/text-embedding-3-small",
-    corpus=dp.utils.load_corpus_from_pdf(
-        "DMD",
-        "context/dmd.pdf",
+dmd_assistant: dp.AiAssistant = dp.DspyAiAssistant(
+    name="DMD",
+    models=dp.Models(
+        task="openai/gpt-4o-mini",
+        teacher="openai/gpt-4o",
+        embedding="openai/text-embedding-3-small",
     ),
-    examples=dp.utils.load_examples_from_json("examples/x.json"),
-)
-print(ecb_ai_assistant.ask("what is data processing cycle? And how many stages are there in it?"))
+    corpus=dp.Corpus(
+        name="DMD",
+        texts=dp.utils.load_pages_from_pdf("context/dmd.pdf"),
 
+    ),
+    dataset=dp.Dataset(
+        examples=dp.utils.load_dicts_from_json("dataset/x.json"),
+    ),
+    metrics={
+        "recall": dp.metrics.SimpleRecall(judge_model="openai/gpt-4o"),
+    },
+)
+
+dmd_assistant.ask("What is DMD?")
+dmd_assistant.evaluate(metric="recall")
+dmd_assistant.optimize(metric="recall", effort="heavy")
+dmd_assistant.evaluate(metric="recall")

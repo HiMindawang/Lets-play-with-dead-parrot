@@ -5,11 +5,18 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "dead-parrot==0.1.1",
+    "dead-parrot==0.1.4",
     "dotenv>=0.9.9",
+    "dspy>=3.1.3",
 ]
 
 [dependency-groups]
 dev = [
     "mypy>=1.19.1",
 ]
+
+[tool.mypy]
+[[tool.mypy.overrides]]
+module = "dspy.*"
+ignore_missing_imports = true
+follow_untyped_imports = true
