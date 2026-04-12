@@ -12,6 +12,8 @@ All my love to pygumby
 Uses [dead-parrot](https://pypi.org/project/dead-parrot/) to build a DSPy-powered RAG assistant:
 
 ```python
+recall_metric = dp.metrics.SimpleRecall(judge_model="openai/gpt-4o")
+
 assistant = dp.DspyAiAssistant(
     name="DMD",
     models=dp.Models(
@@ -19,21 +21,19 @@ assistant = dp.DspyAiAssistant(
         teacher="openai/gpt-4o",
         embedding="openai/text-embedding-3-small",
     ),
-    corpus=dp.Corpus(
+    corpus=dp.Document(
         name="DMD",
-        texts=dp.utils.load_pages_from_pdf("context/dmd.pdf"),
+        pages=dp.utils.load_pdf("context/dmd.pdf"),
     ),
-    dataset=dp.Dataset(
-        examples=dp.utils.load_dicts_from_json("examples/x.json"),
+    dataset=dp.Examples(
+        qa_pairs=dp.utils.load_json("examples/dmd.json"),
     ),
-    metrics={
-        "recall": dp.metrics.SimpleRecall(judge_model="openai/gpt-4o"),
-    },
+    metrics={"recall": recall_metric},
 )
 
-assistant.evaluate(metric="recall")       # eval on devset
-assistant.optimize(metric="recall", effort="heavy")  # optimise with MIPROv2
-assistant.evaluate(metric="recall")       # re-eval after optimisation
+assistant.evaluate(metric=recall_metric)               # eval on devset
+assistant.optimize(metric=recall_metric, effort="heavy")  # optimise with MIPROv2
+assistant.evaluate(metric=recall_metric)               # re-eval after optimisation
 ```
 
 ## Development

@@ -5,7 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "dead-parrot==0.1.4",
+    "dead-parrot==0.1.7",
     "dotenv>=0.9.9",
     "dspy>=3.1.3",
 ]

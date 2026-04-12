@@ -1,0 +1,72 @@
+Question: What are the ACID properties in database transactions?
+Example answer: ACID stands for Atomicity, Consistency, Isolation, and Durability.
+  Atomicity means a transaction is all-or-nothing. Consistency ensures
+  a transaction brings the database from one valid state to another.
+  Isolation means concurrent transactions do not interfere with each
+  other. Durability guarantees that committed transactions persist
+  even after system failures.
+Predicted answer: The ACID properties in database transactions are: 1. Atomicity:
+  Ensures that transactions are completed in full or not at all. 2.
+  Consistency: Ensures that a transaction takes the database from one
+  valid state to another, adhering to all rules and constraints. 3.
+  Isolation: Ensures that concurrent transactions do not interfere
+  with each other. 4. Durability: Guarantees that once a transaction
+  has been committed, it will remain so even in the event of a system
+  failure.
+Rationale: The recall score is 1.0 because the prediction answer covers all
+  elements of the example answer. It mentions all four ACID
+  properties, provides accurate descriptions for each, and aligns well
+  with the information in the example answer. There are no omissions
+  or inaccuracies that would decrease the recall score.
+Score: 1.0
+
+Question: What is the difference between structured, semi-structured, and
+  unstructured data?
+Example answer: Structured data has a predefined schema and fits neatly into rows and
+  columns, as in relational databases. Semi-structured data does not
+  conform to a rigid schema but has organisational properties such as
+  tags or markers (e.g., JSON, XML, CSV). Unstructured data has no
+  predefined format and includes text documents, images, audio, and
+  video, requiring specialised tools for storage and analysis.
+Predicted answer: The difference between structured, semi-structured, and unstructured
+  data is as follows: - **Structured data** is organized in a highly
+  defined manner, making it easily searchable and typically stored in
+  databases with a fixed schema (e.g., SQL databases, spreadsheets). -
+  **Semi-structured data** has some organizational properties but
+  lacks a strict schema, allowing it to be more flexible (e.g., JSON,
+  XML documents). - **Unstructured data** has no inherent
+  organization, making it challenging to store or analyze (e.g., text
+  documents, images, audio, and video content).
+Rationale: The recall score is set at 1.0 because the prediction answer includes
+  all the essential information from the example answer. It covers the
+  main distinctions between structured, semi-structured, and
+  unstructured data, mentions the same examples, and provides
+  additional context and examples that do not deviate from the core
+  meaning.
+Score: 1.0
+
+Question: What is an Entity-Relationship (ER) model?
+Example answer: An Entity-Relationship model is a conceptual data model used to
+  describe the structure of a database. It represents entities
+  (objects or concepts), attributes (properties of entities), and
+  relationships (associations between entities). ER diagrams visually
+  depict these components and are used as a blueprint for designing
+  relational database schemas.
+Predicted answer: An Entity-Relationship (ER) model is a conceptual framework used to
+  model data in databases, consisting of entities (represented as
+  objects or concepts) and the relationships between them. ER models
+  are visually depicted through ER diagrams and can be translated into
+  relational models, making them useful for database design. They can
+  exist in various levels of detail, including conceptual, logical,
+  and physical models.
+Rationale: The recall score is 0.85 because the prediction answer captures the
+  essential components of the ER model described in the example
+  answer, including entities, relationships, and the use of ER
+  diagrams. While the prediction adds more details about levels of
+  models and database design context, it still largely recalls the
+  core aspects mentioned in the example. The key overlap in concepts
+  justifies a high recall score, though the minor additional details
+  in the prediction prevent a perfect score.
+Score: 0.85
+
+2026/04/12 23:46:25 INFO dspy.evaluate.evaluate: Average Metric: 2.85 / 3 (95.0%)

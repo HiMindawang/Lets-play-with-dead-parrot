@@ -1,0 +1,823 @@
+2026/04/12 23:46:25 INFO dspy.teleprompt.mipro_optimizer_v2: 
+RUNNING WITH THE FOLLOWING LIGHT AUTO RUN SETTINGS:
+num_trials: 10
+minibatch: False
+num_fewshot_candidates: 6
+num_instruct_candidates: 3
+valset size: 3
+
+2026/04/12 23:46:25 INFO dspy.teleprompt.mipro_optimizer_v2: 
+==> STEP 1: BOOTSTRAP FEWSHOT EXAMPLES <==
+2026/04/12 23:46:25 INFO dspy.teleprompt.mipro_optimizer_v2: These will be used as few-shot example candidates for our program and for creating instructions.
+
+2026/04/12 23:46:25 INFO dspy.teleprompt.mipro_optimizer_v2: Bootstrapping N=6 sets of demonstrations...
+Bootstrapping set 1/6
+Bootstrapping set 2/6
+Bootstrapping set 3/6
+  0%|          | 0/6 [00:00<?, ?it/s]Question: What distinguishes relational databases from NoSQL databases?
+Example answer: Relational databases store data in structured tables with predefined
+  schemas and use SQL for querying. They enforce ACID transactions and
+  are ideal for structured data with complex relationships. NoSQL
+  databases (document, key-value, column-family, graph) offer flexible
+  schemas, horizontal scalability, and are optimised for unstructured
+  or semi-structured data, often trading some ACID guarantees for
+  performance and scalability.
+Predicted answer: Relational databases are characterized by a structured schema with
+  tables and enforce ACID properties for transactions. They rely on
+  SQL for complex queries. On the other hand, NoSQL databases use
+  various data structures (like key-value, document, or graph) and
+  prioritize availability and partition tolerance over strict
+  consistency, often providing flexibility for unstructured data and
+  simpler query languages.
+Rationale: The recall score of 0.9 reflects the prediction answer's strong
+  alignment with the example answer. It covers most of the critical
+  aspects such as relational databases' structured schema, SQL use,
+  ACID enforcement, and NoSQL databases' flexible data structures and
+  prioritization of performance and scalability aspects. While it does
+  not detail all types of NoSQL databases or mention horizontal
+  scalability explicitly, it includes important concepts like
+  availability, partition tolerance, and flexibility, which are
+  integral to understanding NoSQL databases. Therefore, while not
+  exhaustive, the answer captures most of the substantial points
+  warranting a high recall score.
+Score: 0.9
+
+ 17%|█▋        | 1/6 [00:00<00:00,  8.74it/s]Question: What is the CAP theorem?
+Example answer: The CAP theorem states that a distributed data store can only
+  simultaneously provide two of the three following guarantees:
+  Consistency (every read receives the most recent write),
+  Availability (every request receives a response), and Partition
+  tolerance (the system continues to operate despite network
+  partitions). This means distributed systems must trade off one of
+  these properties.
+Predicted answer: The CAP theorem, proposed by Eric Brewer, asserts that a distributed
+  data store cannot simultaneously achieve all three of the following
+  guarantees: Consistency (every read receives the most recent write
+  or an error), Availability (every request receives a response
+  without errors, but not necessarily the most recent write), and
+  Partition tolerance (the system continues to operate despite network
+  failures). In the case of a network partition, a choice must be made
+  between maintaining consistency or availability.
+Rationale: The recall score is set at 1.0 because the prediction answer fully
+  encompasses the critical elements provided in the example answer
+  related to the CAP theorem. It mentions all three components
+  (Consistency, Availability, Partition tolerance), the impossibility
+  of simultaneously achieving all three, and the necessary trade-offs
+  in distributed systems, thereby matching the depth of example
+  answer.
+Score: 1.0
+
+ 33%|███▎      | 2/6 [00:00<00:00,  8.72it/s]Question: What is data partitioning (sharding) in databases?
+Example answer: Data partitioning, or sharding, is the practice of splitting a large
+  database into smaller, more manageable pieces called partitions or
+  shards, each stored on a separate database node. Horizontal
+  partitioning splits rows across shards by a partition key, while
+  vertical partitioning splits columns. Sharding improves performance
+  and scalability by distributing the query load, but adds complexity
+  to data management and cross-shard queries.
+Predicted answer: Data partitioning (sharding) in databases is the process of dividing a
+  database into smaller, independent segments called shards, which can
+  be stored across multiple servers. This technique enhances
+  performance, scalability, and efficiency by distributing data and
+  allowing for parallel processing of queries, thus reducing the load
+  and improving response times.
+Rationale: The recall score is 0.8 because the prediction answer accurately
+  captures the main concepts of data partitioning and its benefits of
+  improving performance and scalability. However, it misses some
+  specifics mentioned in the example answer, such as the types of
+  partitioning (horizontal and vertical) and the added complexity in
+  data management and cross-shard queries. Therefore, while the
+  prediction is mostly aligned with the example, it lacks some
+  detailed aspects.
+Score: 0.8
+
+ 50%|█████     | 3/6 [00:00<00:00,  8.90it/s]Question: What are graph databases and when should they be used?
+Example answer: Graph databases store data as nodes (entities) and edges
+  (relationships), making them ideal for highly connected data. They
+  excel at traversing complex relationships efficiently, such as in
+  social networks, recommendation engines, fraud detection, and
+  knowledge graphs. Compared to relational databases, graph databases
+  avoid expensive JOIN operations by storing relationships as first-
+  class citizens.
+Predicted answer: Graph databases are databases that utilize graph structures to
+  represent and store data, consisting of nodes (entities), edges
+  (relationships), and properties (attributes). They should be used in
+  scenarios where relationships between data are vital, such as in
+  social networks, fraud detection, and recommendation engines, as
+  they excel in handling interconnected data and complex queries
+  efficiently.
+Rationale: Both answers discuss the main attributes of graph databases and
+  identify primary use cases, including social networks and fraud
+  detection. The prediction captures the need for handling
+  relationships and complex queries efficiently, similar to the
+  example. However, it lacks the specific mention of knowledge graphs
+  and the explanation of how graph databases avoid JOIN operations,
+  causing a reduction in score, while still providing a largely
+  accurate recall.
+Score: 0.8
+
+ 67%|██████▋   | 4/6 [00:00<00:00,  8.94it/s]Question: What is the difference between OLTP and OLAP?
+Example answer: OLTP (Online Transaction Processing) handles high volumes of short,
+  real-time transactions such as inserts, updates, and deletes,
+  optimised for fast query processing with normalised data. OLAP
+  (Online Analytical Processing) is designed for complex queries over
+  large historical datasets, typically using denormalised or
+  star/snowflake schemas, and is optimised for read-heavy analytical
+  workloads.
+Predicted answer: The main differences between OLTP and OLAP are as follows:   -
+  **Function**: OLTP is geared for transaction processing, while OLAP
+  is for analytics and decision support.   - **Database Structure**:
+  OLTP structures are defined by application requirements, whereas
+  OLAP structures are driven by decision-making needs.   - **Data
+  Properties**: OLTP data is up-to-date, isolated, and transactional,
+  while OLAP data is historical, aggregated, and multi-dimensional.
+  - **Workload**: OLTP workloads involve read-write operations,
+  whereas OLAP mainly involves read operations.   - **Operation**:
+  OLTP operates continuously, while OLAP operates in batches or
+  bursts.   - **Unit of Work**: OLTP focuses on simple, local
+  transactions, whereas OLAP handles complex, global calculations.   -
+  **Key Metrics**: OLTP measures success by transaction throughput,
+  while OLAP measures query response time.
+Rationale: The recall score is 1.0 because the prediction answer successfully
+  covers all the main points found in the example answer, without
+  missing any key aspects of OLTP and OLAP differences. It even
+  provides additional comprehensive comparison details that expand
+  upon the example's basis, reinforcing the predicted answer's
+  thoroughness in addressing the asked difference.
+Score: 1.0
+
+ 83%|████████▎ | 5/6 [00:00<00:00,  8.86it/s]Question: What is SQL and what are its main categories of commands?
+Example answer: SQL (Structured Query Language) is the standard language for managing
+  and querying relational databases. Its main categories are: DDL
+  (Data Definition Language) for creating and modifying schema objects
+  (CREATE, ALTER, DROP); DML (Data Manipulation Language) for querying
+  and modifying data (SELECT, INSERT, UPDATE, DELETE); DCL (Data
+  Control Language) for managing permissions (GRANT, REVOKE); and TCL
+  (Transaction Control Language) for managing transactions (COMMIT,
+  ROLLBACK).
+Predicted answer: SQL (Structured Query Language) is a standard language for querying
+  and managing relational databases. Its main categories of commands
+  include: - Data Definition Language (DDL): Commands that define the
+  database schema (e.g., CREATE, ALTER, DROP). - Data Manipulation
+  Language (DML): Commands for manipulating data (e.g., SELECT,
+  INSERT, UPDATE, DELETE). - Data Control Language (DCL): Commands
+  that control access to the data (e.g., GRANT, REVOKE).
+Rationale: The recall score of 0.75 reflects that the prediction answer covers
+  three out of the four categories of SQL commands mentioned in the
+  example answer. The prediction correctly identifies and explains
+  DDL, DML, and DCL with relevant examples, which constitutes 75% of
+  the main content provided by the example. However, it lacks coverage
+  of TCL, which accounts for the remaining 25% of the answer in the
+  context of the example's outlined categories, resulting in a partial
+  recall.
+Score: 0.75
+
+100%|██████████| 6/6 [00:00<00:00,  8.80it/s]100%|██████████| 6/6 [00:00<00:00,  8.82it/s]
+Bootstrapped 2 full traces after 5 examples for up to 1 rounds, amounting to 6 attempts.
+Bootstrapping set 4/6
+  0%|          | 0/6 [00:00<?, ?it/s]Question: What are graph databases and when should they be used?
+Example answer: Graph databases store data as nodes (entities) and edges
+  (relationships), making them ideal for highly connected data. They
+  excel at traversing complex relationships efficiently, such as in
+  social networks, recommendation engines, fraud detection, and
+  knowledge graphs. Compared to relational databases, graph databases
+  avoid expensive JOIN operations by storing relationships as first-
+  class citizens.
+Predicted answer: Graph databases are databases that store data in the form of graphs,
+  consisting of nodes (entities), edges (relationships), and
+  associated properties. They are particularly useful for applications
+  that involve complex and interconnected data, such as social
+  networks, recommendation systems, and fraud detection. Graph
+  databases should be used when representing relationships and
+  connections among data points is crucial, especially when deep
+  traversals or dynamic relationships need to be managed efficiently.
+Rationale: The recall score of 0.85 reflects that the prediction answer
+  accurately captures the core information provided in the example
+  answer. It identifies the main purpose of graph databases (storing
+  and traversing complex relationships), highlights similar use cases
+  (social networks, recommendation systems, fraud detection), and
+  articulates when graph databases should be prioritized over others.
+  However, it lacks specific mentions of knowledge graphs and the
+  technical specification regarding avoiding expensive JOIN
+  operations, which are present in the example answer.
+Score: 0.85
+
+ 17%|█▋        | 1/6 [00:00<00:00,  9.33it/s]Question: What is data partitioning (sharding) in databases?
+Example answer: Data partitioning, or sharding, is the practice of splitting a large
+  database into smaller, more manageable pieces called partitions or
+  shards, each stored on a separate database node. Horizontal
+  partitioning splits rows across shards by a partition key, while
+  vertical partitioning splits columns. Sharding improves performance
+  and scalability by distributing the query load, but adds complexity
+  to data management and cross-shard queries.
+Predicted answer: Data partitioning (sharding) in databases refers to the process of
+  dividing a large dataset into smaller, more manageable pieces called
+  shards, which can be distributed across multiple servers. This
+  method improves performance and scalability, allowing for concurrent
+  processing and reducing the load on any single server by ensuring
+  that queries can be executed on relevant shards, thus optimizing
+  resource utilization.
+Rationale: The recall score is 0.7 because the prediction answer contains the
+  essential elements of the example answer, such as the concept of
+  dividing the dataset into smaller parts (shards) across multiple
+  servers to enhance performance and scalability. However, it lacks
+  certain details present in the example answer, like the types of
+  partitioning (horizontal and vertical) and the complexities involved
+  with managing sharded data. These omissions prevent a higher recall
+  score.
+Score: 0.7
+
+ 33%|███▎      | 2/6 [00:00<00:00,  8.98it/s]Question: What is the difference between OLTP and OLAP?
+Example answer: OLTP (Online Transaction Processing) handles high volumes of short,
+  real-time transactions such as inserts, updates, and deletes,
+  optimised for fast query processing with normalised data. OLAP
+  (Online Analytical Processing) is designed for complex queries over
+  large historical datasets, typically using denormalised or
+  star/snowflake schemas, and is optimised for read-heavy analytical
+  workloads.
+Predicted answer: The primary differences between OLTP and OLAP are as follows: -
+  **Purpose**: OLTP focuses on transaction processing for routine
+  operations, while OLAP is geared towards complex analytics and
+  decision-making support. - **Database Structure**: OLTP databases
+  are structured based on application needs, whereas OLAP databases
+  are organized according to the analytical requirements. - **Data
+  Properties**: OLTP data is up-to-date, transactional, and isolated,
+  while OLAP data is typically historical, aggregated, and multi-
+  dimensional. - **Workload Characteristics**: OLTP handles continuous
+  and mostly read-write operations with a focus on transaction
+  throughput, whereas OLAP processes occur in batches or bursts,
+  predominantly involving read operations with high latency. - **Unit
+  of Work**: OLTP deals with simple, local transactions, while OLAP
+  manages complex, global data aggregations.
+Rationale: The recall score of 0.85 reflects that the prediction answer
+  successfully captures most critical aspects of OLTP and OLAP as
+  described in the example answer. The prediction elaborates more on
+  dimensions such as purpose, database structure, and data properties,
+  providing a nuanced coverage of the differences. However, it misses
+  explicitly mentioning the schema types used in OLAP as detailed in
+  the example answer, hence a slight deduction is warranted. Overall,
+  it demonstrates a strong recall of the detailed distinctions between
+  OLTP and OLAP.
+Score: 0.85
+
+ 50%|█████     | 3/6 [00:00<00:00,  8.67it/s]Question: What distinguishes relational databases from NoSQL databases?
+Example answer: Relational databases store data in structured tables with predefined
+  schemas and use SQL for querying. They enforce ACID transactions and
+  are ideal for structured data with complex relationships. NoSQL
+  databases (document, key-value, column-family, graph) offer flexible
+  schemas, horizontal scalability, and are optimised for unstructured
+  or semi-structured data, often trading some ACID guarantees for
+  performance and scalability.
+Predicted answer: The main distinctions between relational databases and NoSQL databases
+  include data structure, schema flexibility, and transaction
+  consistency. Relational databases use a fixed schema with tables and
+  relationships, ensuring ACID compliance, while NoSQL databases
+  employ various data models (e.g., key-value, document, graph) and
+  allow for more flexible, dynamic schemas without strict ACID
+  guarantees. Instead, NoSQL databases often utilize eventual
+  consistency, emphasizing availability and partition tolerance per
+  the CAP theorem.
+Rationale: The recall score of 0.95 reflects the high degree of overlap between
+  the example answer and the prediction. While both answers are
+  aligned in core content, with both discussing structured tables,
+  predefined schemas, ACID compliance for relational databases, and
+  flexibility and performance trade-offs in NoSQL, the prediction
+  answer includes additional details about data models and CAP theorem
+  concepts that add depth but do not detract from the core recall of
+  the essential points covered in the example.
+Score: 0.95
+
+ 67%|██████▋   | 4/6 [00:00<00:00,  8.67it/s] 67%|██████▋   | 4/6 [00:00<00:00,  8.75it/s]
+Bootstrapped 1 full traces after 4 examples for up to 1 rounds, amounting to 4 attempts.
+Bootstrapping set 5/6
+  0%|          | 0/6 [00:00<?, ?it/s]Question: What are graph databases and when should they be used?
+Example answer: Graph databases store data as nodes (entities) and edges
+  (relationships), making them ideal for highly connected data. They
+  excel at traversing complex relationships efficiently, such as in
+  social networks, recommendation engines, fraud detection, and
+  knowledge graphs. Compared to relational databases, graph databases
+  avoid expensive JOIN operations by storing relationships as first-
+  class citizens.
+Predicted answer: Graph databases are specialized databases that use graph structures to
+  represent and store data with relationships between entities. They
+  are particularly effective for applications with heavily
+  interconnected data, like social networks or recommendation systems,
+  where the relationships and connections between data points are
+  crucial to the analysis and querying process.
+Rationale: The prediction answer covers several key points from the example
+  answer, such as the definition of graph databases and their
+  applicability to interconnected data scenarios like social networks
+  and recommendation systems. However, it misses some specific use
+  cases like fraud detection and knowledge graphs mentioned in the
+  example. It also doesn't include a comparison to relational
+  databases. Due to these omissions, a recall score of 0.7 is
+  assigned, indicating that the prediction captures a substantial
+  portion of the example answer but not all of it.
+Score: 0.7
+
+ 17%|█▋        | 1/6 [00:00<00:00,  9.02it/s]Question: What is the CAP theorem?
+Example answer: The CAP theorem states that a distributed data store can only
+  simultaneously provide two of the three following guarantees:
+  Consistency (every read receives the most recent write),
+  Availability (every request receives a response), and Partition
+  tolerance (the system continues to operate despite network
+  partitions). This means distributed systems must trade off one of
+  these properties.
+Predicted answer: The CAP theorem, proposed by Eric Brewer, asserts that in a
+  distributed data store, you can only guarantee two out of the
+  following three properties: Consistency (every read returns the most
+  recent write), Availability (every request receives a response
+  without guarantee of the most recent write), and Partition tolerance
+  (the system continues to operate despite network partitioning). It
+  implies that during a network partition, you must choose between
+  consistency and availability.
+Rationale: The recall score is 1.0 because the prediction answer successfully
+  includes all the critical elements found in the example answer. It
+  explains the CAP theorem's essence, mentioning each of the three
+  properties and their trade-offs, thus retaining complete recall of
+  the example's content.
+Score: 1.0
+
+ 33%|███▎      | 2/6 [00:00<00:00,  8.91it/s]Question: What is SQL and what are its main categories of commands?
+Example answer: SQL (Structured Query Language) is the standard language for managing
+  and querying relational databases. Its main categories are: DDL
+  (Data Definition Language) for creating and modifying schema objects
+  (CREATE, ALTER, DROP); DML (Data Manipulation Language) for querying
+  and modifying data (SELECT, INSERT, UPDATE, DELETE); DCL (Data
+  Control Language) for managing permissions (GRANT, REVOKE); and TCL
+  (Transaction Control Language) for managing transactions (COMMIT,
+  ROLLBACK).
+Predicted answer: SQL is a standard language for querying and managing relational
+  databases. Its main categories of commands include: 1. Data
+  Definition Language (DDL) - for defining database schemas (e.g.,
+  CREATE, ALTER, DROP). 2. Data Manipulation Language (DML) - for
+  manipulating data within the database (e.g., SELECT, INSERT, UPDATE,
+  DELETE). 3. Data Control Language (DCL) - for controlling access to
+  data (e.g., GRANT, REVOKE).
+Rationale: The recall score is 0.75 because three out of the four main categories
+  of SQL commands mentioned in the example answer are also mentioned
+  in the prediction answer. The line of evaluation here considers the
+  presence of accurate key concepts from the example answer. The
+  missing category (TCL) accounts for the deduction in the recall
+  score.
+Score: 0.75
+
+ 50%|█████     | 3/6 [00:00<00:00,  8.98it/s]Question: What distinguishes relational databases from NoSQL databases?
+Example answer: Relational databases store data in structured tables with predefined
+  schemas and use SQL for querying. They enforce ACID transactions and
+  are ideal for structured data with complex relationships. NoSQL
+  databases (document, key-value, column-family, graph) offer flexible
+  schemas, horizontal scalability, and are optimised for unstructured
+  or semi-structured data, often trading some ACID guarantees for
+  performance and scalability.
+Predicted answer: Relational databases are characterized by their use of structured
+  schemas with tables and enforce ACID properties, ensuring high data
+  consistency and integrity. In contrast, NoSQL databases employ
+  various data models (such as key-value, document, wide column, and
+  graph) that allow greater flexibility and scalability. NoSQL systems
+  typically prioritize availability and partition tolerance, often
+  using eventual consistency instead of strict ACID compliance, making
+  them well-suited for handling unstructured data and large-scale
+  applications.
+Rationale: The prediction captures all the significant points mentioned in the
+  example, such as structured schemas in relational databases and
+  flexible, scalable models in NoSQL databases. It also correctly
+  elaborates on additional aspects like eventual consistency, which is
+  not present in the example but accurately represents the context.
+  Therefore, the prediction is comprehensive and fully aligned in
+  scope and content with the example answer, meriting a recall score
+  of 1.0.
+Score: 1.0
+
+ 67%|██████▋   | 4/6 [00:03<00:02,  1.13s/it] 67%|██████▋   | 4/6 [00:03<00:01,  1.32it/s]
+Bootstrapped 2 full traces after 4 examples for up to 1 rounds, amounting to 4 attempts.
+Bootstrapping set 6/6
+  0%|          | 0/6 [00:00<?, ?it/s]Question: What is the CAP theorem?
+Example answer: The CAP theorem states that a distributed data store can only
+  simultaneously provide two of the three following guarantees:
+  Consistency (every read receives the most recent write),
+  Availability (every request receives a response), and Partition
+  tolerance (the system continues to operate despite network
+  partitions). This means distributed systems must trade off one of
+  these properties.
+Predicted answer: The CAP theorem, also known as Brewer's theorem, states that in a
+  distributed data store, one can simultaneously provide only two of
+  the following three guarantees: Consistency (every read receives the
+  most recent write or an error), Availability (every request receives
+  a response without the guarantee it contains the most recent write),
+  and Partition Tolerance (the system continues to operate despite
+  network issues). During a network partition, a choice must be made
+  between prioritizing consistency or availability.
+Rationale: The prediction answer recalled all aspects of the CAP theorem as
+  described in the example answer. Both explain the need to choose two
+  out of the three guarantees in a distributed data store, include
+  definitions of each guarantee, and acknowledge the trade-offs
+  required in distributed systems. The prediction goes into slightly
+  more detail about how the choice between consistency and
+  availability occurs during a partition, but this does not detract
+  from its recall of the main principles that are discussed in the
+  example answer. Therefore, it deserves a perfect recall score of
+  1.0.
+Score: 1.0
+
+ 17%|█▋        | 1/6 [00:06<00:31,  6.28s/it]Question: What is data partitioning (sharding) in databases?
+Example answer: Data partitioning, or sharding, is the practice of splitting a large
+  database into smaller, more manageable pieces called partitions or
+  shards, each stored on a separate database node. Horizontal
+  partitioning splits rows across shards by a partition key, while
+  vertical partitioning splits columns. Sharding improves performance
+  and scalability by distributing the query load, but adds complexity
+  to data management and cross-shard queries.
+Predicted answer: Data partitioning, or sharding, in databases refers to the process of
+  dividing a large dataset into smaller, more manageable segments
+  called shards. Each shard contains a subset of the overall data and
+  can be located on different servers, which helps improve
+  performance, availability, and scalability by allowing concurrent
+  query execution across multiple shards.
+Rationale: The prediction captures the main ideas of data partitioning and its
+  benefits, such as improved performance and scalability. It also
+  mentions some technical aspects, like the division of data into
+  shards and storage on different servers. However, it does not
+  mention how data can be partitioned horizontally or vertically, nor
+  the complexities involved, as highlighted in the example. Thus,
+  while it covers the core concept well, it misses some detailed
+  aspects noted in the example answer, resulting in a high but less
+  than perfect recall score.
+Score: 0.85
+
+ 33%|███▎      | 2/6 [00:14<00:30,  7.52s/it]Question: What distinguishes relational databases from NoSQL databases?
+Example answer: Relational databases store data in structured tables with predefined
+  schemas and use SQL for querying. They enforce ACID transactions and
+  are ideal for structured data with complex relationships. NoSQL
+  databases (document, key-value, column-family, graph) offer flexible
+  schemas, horizontal scalability, and are optimised for unstructured
+  or semi-structured data, often trading some ACID guarantees for
+  performance and scalability.
+Predicted answer: Relational databases are based on structured schemas and enforce ACID
+  properties, relying on tabular relations for data storage. NoSQL
+  databases, however, utilize various flexible data models (like key-
+  value pairs, documents, or graphs) and often compromise on
+  consistency for better availability and speed, adopting eventual
+  consistency in many cases. This fundamental difference allows NoSQL
+  databases to handle large volumes of unstructured data and scale
+  horizontally more easily than traditional relational databases.
+Rationale: The prediction answer contains all the crucial components of the
+  example answer, particularly the mention of structured schemas and
+  ACID transactions in relational databases, as well as the flexible
+  schemas, diverse data models, and scalability advantages of NoSQL.
+  Although the specific wording and emphasis differ, there are no
+  major omissions or incorrect statements that would impede the core
+  understanding of distinguishing these two database types. Therefore,
+  the recall score is a perfect 1.0.
+Score: 1.0
+
+ 50%|█████     | 3/6 [00:21<00:21,  7.16s/it] 50%|█████     | 3/6 [00:21<00:21,  7.13s/it]
+Bootstrapped 2 full traces after 3 examples for up to 1 rounds, amounting to 3 attempts.
+2026/04/12 23:46:50 INFO dspy.teleprompt.mipro_optimizer_v2: 
+==> STEP 2: PROPOSE INSTRUCTION CANDIDATES <==
+2026/04/12 23:46:50 INFO dspy.teleprompt.mipro_optimizer_v2: We will use the few-shot examples from the previous step, a generated dataset summary, a summary of the program code, and a randomly selected prompting tip to propose instructions.
+2026/04/12 23:46:54 INFO dspy.teleprompt.mipro_optimizer_v2: 
+Proposing N=3 instructions...
+
+2026/04/12 23:47:13 INFO dspy.teleprompt.mipro_optimizer_v2: Proposed Instructions for Predictor 0:
+
+2026/04/12 23:47:13 INFO dspy.teleprompt.mipro_optimizer_v2: 0: Answer the question based on retrieved context.
+
+2026/04/12 23:47:13 INFO dspy.teleprompt.mipro_optimizer_v2: 1: Analyze the given context and provide a comprehensive answer to the posed question, ensuring the response is logically reasoned and supported by the context. Clearly articulate the reasoning process used to derive the answer, drawing on relevant information to enhance understanding and reliability.
+
+2026/04/12 23:47:13 INFO dspy.teleprompt.mipro_optimizer_v2: 2: Imagine you are tasked with ensuring the success of a critical educational workshop on database management concepts, attended by IT professionals and students eager to gain insights. Your responsibility is to expertly answer complex database theory questions, like distinguishing between OLTP and OLAP systems or explaining the CAP theorem, by utilizing context retrieved from technical documentation. Provide step-by-step reasoning to illustrate your thought process and craft clear and accurate responses that will leave a lasting impression of clarity and expertise on your audience.
+
+2026/04/12 23:47:13 INFO dspy.teleprompt.mipro_optimizer_v2: 
+
+2026/04/12 23:47:13 INFO dspy.teleprompt.mipro_optimizer_v2: ==> STEP 3: FINDING OPTIMAL PROMPT PARAMETERS <==
+2026/04/12 23:47:13 INFO dspy.teleprompt.mipro_optimizer_v2: We will evaluate the program over a series of trials with different combinations of instructions and few-shot examples to find the optimal combination using Bayesian Optimization.
+
+2026/04/12 23:47:13 INFO dspy.teleprompt.mipro_optimizer_v2: == Trial 1 / 10 - Full Evaluation of Default Program ==
+  0%|          | 0/3 [00:00<?, ?it/s]Question: What is the difference between structured, semi-structured, and
+  unstructured data?
+Example answer: Structured data has a predefined schema and fits neatly into rows and
+  columns, as in relational databases. Semi-structured data does not
+  conform to a rigid schema but has organisational properties such as
+  tags or markers (e.g., JSON, XML, CSV). Unstructured data has no
+  predefined format and includes text documents, images, audio, and
+  video, requiring specialised tools for storage and analysis.
+Predicted answer: The difference between structured, semi-structured, and unstructured
+  data is as follows: - **Structured data** is organized in a highly
+  defined manner, making it easily searchable and typically stored in
+  databases with a fixed schema (e.g., SQL databases, spreadsheets). -
+  **Semi-structured data** has some organizational properties but
+  lacks a strict schema, allowing it to be more flexible (e.g., JSON,
+  XML documents). - **Unstructured data** has no inherent
+  organization, making it challenging to store or analyze (e.g., text
+  documents, images, audio, and video content).
+Rationale: The recall score is set at 1.0 because the prediction answer includes
+  all the essential information from the example answer. It covers the
+  main distinctions between structured, semi-structured, and
+  unstructured data, mentions the same examples, and provides
+  additional context and examples that do not deviate from the core
+  meaning.
+Score: 1.0
+
+Question: What are the ACID properties in database transactions?
+Example answer: ACID stands for Atomicity, Consistency, Isolation, and Durability.
+  Atomicity means a transaction is all-or-nothing. Consistency ensures
+  a transaction brings the database from one valid state to another.
+  Isolation means concurrent transactions do not interfere with each
+  other. Durability guarantees that committed transactions persist
+  even after system failures.
+Predicted answer: The ACID properties in database transactions are: 1. Atomicity:
+  Ensures that transactions are completed in full or not at all. 2.
+  Consistency: Ensures that a transaction takes the database from one
+  valid state to another, adhering to all rules and constraints. 3.
+  Isolation: Ensures that concurrent transactions do not interfere
+  with each other. 4. Durability: Guarantees that once a transaction
+  has been committed, it will remain so even in the event of a system
+  failure.
+Rationale: The recall score is 1.0 because the prediction answer covers all
+  elements of the example answer. It mentions all four ACID
+  properties, provides accurate descriptions for each, and aligns well
+  with the information in the example answer. There are no omissions
+  or inaccuracies that would decrease the recall score.
+Score: 1.0
+
+Question: What is an Entity-Relationship (ER) model?
+Example answer: An Entity-Relationship model is a conceptual data model used to
+  describe the structure of a database. It represents entities
+  (objects or concepts), attributes (properties of entities), and
+  relationships (associations between entities). ER diagrams visually
+  depict these components and are used as a blueprint for designing
+  relational database schemas.
+Predicted answer: An Entity-Relationship (ER) model is a conceptual framework used to
+  model data in databases, consisting of entities (represented as
+  objects or concepts) and the relationships between them. ER models
+  are visually depicted through ER diagrams and can be translated into
+  relational models, making them useful for database design. They can
+  exist in various levels of detail, including conceptual, logical,
+  and physical models.
+Rationale: The recall score is 0.85 because the prediction answer captures the
+  essential components of the ER model described in the example
+  answer, including entities, relationships, and the use of ER
+  diagrams. While the prediction adds more details about levels of
+  models and database design context, it still largely recalls the
+  core aspects mentioned in the example. The key overlap in concepts
+  justifies a high recall score, though the minor additional details
+  in the prediction prevent a perfect score.
+Score: 0.85
+
+Average Metric: 1.00 / 1 (100.0%):   0%|          | 0/3 [00:00<?, ?it/s]Average Metric: 1.00 / 1 (100.0%):  33%|███▎      | 1/3 [00:00<00:00,  8.36it/s]Average Metric: 2.00 / 2 (100.0%):  33%|███▎      | 1/3 [00:00<00:00,  8.36it/s]Average Metric: 2.85 / 3 (95.0%):  67%|██████▋   | 2/3 [00:00<00:00,  8.36it/s] Average Metric: 2.85 / 3 (95.0%): 100%|██████████| 3/3 [00:00<00:00, 25.04it/s]
+2026/04/12 23:47:13 INFO dspy.evaluate.evaluate: Average Metric: 2.85 / 3 (95.0%)
+2026/04/12 23:47:13 INFO dspy.teleprompt.mipro_optimizer_v2: Default program score: 95.0
+
+/Users/minfu/Documents/GitHub/Lets-play-with-dead-parrot/.venv/lib/python3.13/site-packages/dspy/teleprompt/mipro_optimizer_v2.py:646: ExperimentalWarning: Argument ``multivariate`` is an experimental feature. The interface can change in the future.
+  sampler = optuna.samplers.TPESampler(seed=seed, multivariate=True)
+2026/04/12 23:47:13 INFO dspy.teleprompt.mipro_optimizer_v2: ===== Trial 2 / 10 =====
+  0%|          | 0/3 [00:00<?, ?it/s]Question: What is an Entity-Relationship (ER) model?
+Example answer: An Entity-Relationship model is a conceptual data model used to
+  describe the structure of a database. It represents entities
+  (objects or concepts), attributes (properties of entities), and
+  relationships (associations between entities). ER diagrams visually
+  depict these components and are used as a blueprint for designing
+  relational database schemas.
+Predicted answer: An Entity-Relationship (ER) model is a data modeling approach that
+  visualizes and defines entities (data objects) and the relationships
+  between them. It uses ER diagrams to represent these entities, their
+  attributes, and the associations between them, facilitating the
+  translation of abstract data structures into logical database
+  models. ER modeling is crucial for designing and understanding
+  relational databases.
+Rationale: The prediction answer captures all the key elements found in the
+  example answer: conceptual modeling, entities and their attributes,
+  relationships, and the role of ER diagrams in database design.
+  Despite a more detailed approach, it does not miss any crucial
+  point, thereby showing complete recall of the essential information.
+Score: 1.0
+
+Average Metric: 1.00 / 1 (100.0%):   0%|          | 0/3 [00:08<?, ?it/s]Average Metric: 1.00 / 1 (100.0%):  33%|███▎      | 1/3 [00:08<00:17,  8.63s/it]Question: What is the difference between structured, semi-structured, and
+  unstructured data?
+Example answer: Structured data has a predefined schema and fits neatly into rows and
+  columns, as in relational databases. Semi-structured data does not
+  conform to a rigid schema but has organisational properties such as
+  tags or markers (e.g., JSON, XML, CSV). Unstructured data has no
+  predefined format and includes text documents, images, audio, and
+  video, requiring specialised tools for storage and analysis.
+Predicted answer: The differences between structured, semi-structured, and unstructured
+  data lie in their organization and format. Structured data is highly
+  organized and fits into a predefined schema, usually stored in
+  relational databases. Semi-structured data has some organizational
+  properties but does not conform to a strict schema, utilizing tags
+  or markers for elements (e.g., XML, JSON). Unstructured data lacks
+  any specific structure or format, including text files, images, and
+  videos, making it the most challenging to store and analyze.
+Rationale: The prediction answer captures all critical points from the example
+  answer, including the characteristics and examples of structured,
+  semi-structured, and unstructured data. There is a high degree of
+  detail and accuracy in conveying the differences, clearly matching
+  the content of the example answer.
+Score: 1.0
+
+Average Metric: 2.00 / 2 (100.0%):  33%|███▎      | 1/3 [00:10<00:17,  8.63s/it]Average Metric: 2.00 / 2 (100.0%):  67%|██████▋   | 2/3 [00:10<00:04,  4.46s/it]Question: What are the ACID properties in database transactions?
+Example answer: ACID stands for Atomicity, Consistency, Isolation, and Durability.
+  Atomicity means a transaction is all-or-nothing. Consistency ensures
+  a transaction brings the database from one valid state to another.
+  Isolation means concurrent transactions do not interfere with each
+  other. Durability guarantees that committed transactions persist
+  even after system failures.
+Predicted answer: The ACID properties in database transactions are:  1. **Atomicity**:
+  Ensures that a transaction is all-or-nothing; it either completes
+  fully or has no effect. 2. **Consistency**: Guarantees that a
+  transaction takes the database from one valid state to another,
+  adhering to all constraints and rules. 3. **Isolation**: Ensures
+  that concurrent transactions do not interfere with each other; the
+  effects of a transaction are not visible until it is complete. 4.
+  **Durability**: Confirms that once a transaction is committed, its
+  changes are permanent and survive system failures.
+Rationale: The recall score is 1.0 because the prediction answer includes all
+  relevant components of the ACID properties mentioned in the example
+  answer. Each component—Atomicity, Consistency, Isolation, and
+  Durability—is described accurately, covering their definitions and
+  implications, with no omissions.
+Score: 1.0
+
+Average Metric: 3.00 / 3 (100.0%):  67%|██████▋   | 2/3 [00:13<00:04,  4.46s/it]Average Metric: 3.00 / 3 (100.0%): 100%|██████████| 3/3 [00:13<00:00,  3.98s/it]Average Metric: 3.00 / 3 (100.0%): 100%|██████████| 3/3 [00:13<00:00,  4.52s/it]
+2026/04/12 23:47:27 INFO dspy.evaluate.evaluate: Average Metric: 3.0 / 3 (100.0%)
+2026/04/12 23:47:27 INFO dspy.teleprompt.mipro_optimizer_v2: [92mBest full score so far![0m Score: 100.0
+2026/04/12 23:47:27 INFO dspy.teleprompt.mipro_optimizer_v2: Score: 100.0 with parameters ['Predictor 0: Instruction 1', 'Predictor 0: Few-Shot Set 3'].
+2026/04/12 23:47:27 INFO dspy.teleprompt.mipro_optimizer_v2: Scores so far: [95.0, 100.0]
+2026/04/12 23:47:27 INFO dspy.teleprompt.mipro_optimizer_v2: Best score so far: 100.0
+2026/04/12 23:47:27 INFO dspy.teleprompt.mipro_optimizer_v2: ========================
+
+
+2026/04/12 23:47:27 INFO dspy.teleprompt.mipro_optimizer_v2: ===== Trial 3 / 10 =====
+  0%|          | 0/3 [00:00<?, ?it/s]Question: What are the ACID properties in database transactions?
+Example answer: ACID stands for Atomicity, Consistency, Isolation, and Durability.
+  Atomicity means a transaction is all-or-nothing. Consistency ensures
+  a transaction brings the database from one valid state to another.
+  Isolation means concurrent transactions do not interfere with each
+  other. Durability guarantees that committed transactions persist
+  even after system failures.
+Predicted answer: The ACID properties in database transactions are: 1. **Atomicity**:
+  Ensures that a transaction is completed fully or not at all (no
+  partial writes). 2. **Consistency**: Guarantees that a transaction
+  takes the database from one valid state to another, adhering to all
+  constraints. 3. **Isolation**: Ensures that transactions do not
+  affect each other's execution, maintaining their independence. 4.
+  **Durability**: Guarantees that once a transaction is committed, it
+  remains so even in case of system failures.
+Rationale: The recall score is 1.0 because the prediction answer correctly
+  recalls all four components of the ACID properties as described in
+  the example answer. There is no missing or incorrect information,
+  and the core concepts of each property are fully represented, thus
+  ensuring complete recall.
+Score: 1.0
+
+Average Metric: 1.00 / 1 (100.0%):   0%|          | 0/3 [00:08<?, ?it/s]Average Metric: 1.00 / 1 (100.0%):  33%|███▎      | 1/3 [00:08<00:17,  8.78s/it]Question: What is an Entity-Relationship (ER) model?
+Example answer: An Entity-Relationship model is a conceptual data model used to
+  describe the structure of a database. It represents entities
+  (objects or concepts), attributes (properties of entities), and
+  relationships (associations between entities). ER diagrams visually
+  depict these components and are used as a blueprint for designing
+  relational database schemas.
+Predicted answer: An Entity-Relationship (ER) model is a conceptual framework used to
+  describe the structure of a database in terms of entities (which
+  represent data objects) and the relationships between them. It
+  utilizes ER diagrams for visual representation, making it easier to
+  comprehend how different data types interact. The model comes in
+  three types: conceptual, logical, and physical, with the conceptual
+  model providing the highest level of abstraction for establishing
+  data architecture within an organization. Entities are named with
+  singular nouns, and relationships define the interactions between
+  these entities, sometimes requiring additional tables for many-to-
+  many relationships.
+Rationale: The recall score is 0.80 because the prediction answer covers the
+  essential elements mentioned in the example answer, including the
+  purpose of the ER model, its representation of entities,
+  relationships, and its use of diagrams. However, it adds additional
+  information about various types of models and some naming
+  conventions, which are not essential parts of the basic definition
+  given in the example answer. The overlap in key points is
+  significant, but the additional details in the prediction answer
+  slightly decrease its focus compared to the concise core elements in
+  the example answer.
+Score: 0.8
+
+Average Metric: 1.80 / 2 (90.0%):  33%|███▎      | 1/3 [00:11<00:17,  8.78s/it] Average Metric: 1.80 / 2 (90.0%):  67%|██████▋   | 2/3 [00:11<00:05,  5.06s/it]Question: What is the difference between structured, semi-structured, and
+  unstructured data?
+Example answer: Structured data has a predefined schema and fits neatly into rows and
+  columns, as in relational databases. Semi-structured data does not
+  conform to a rigid schema but has organisational properties such as
+  tags or markers (e.g., JSON, XML, CSV). Unstructured data has no
+  predefined format and includes text documents, images, audio, and
+  video, requiring specialised tools for storage and analysis.
+Predicted answer: The differences between structured, semi-structured, and unstructured
+  data are as follows:  1. **Structured Data**: Highly organized in
+  predefined formats, following a specific schema (e.g., relational
+  databases). Examples include data in tables with rows and columns.
+  2. **Semi-Structured Data**: Does not conform to a rigid structure
+  but contains tags or markers to organize elements. Examples include
+  XML and JSON data.  3. **Unstructured Data**: Lacks a predefined
+  format, making it difficult to process and analyze. It includes text
+  documents, images, videos, and other complex data types.
+  Understanding these distinctions is important for effective data
+  management and selection of appropriate database technologies.
+Rationale: The recall score is 1.0 because the prediction answer captures all the
+  key points provided in the example answer regarding structured,
+  semi-structured, and unstructured data. The prediction accurately
+  recognizes the properties of each type of data and includes similar
+  examples. The additional context about the importance of
+  understanding these differences for data management does not affect
+  the completeness or accuracy of what was recalled from the example
+  answer.
+Score: 1.0
+
+Average Metric: 2.80 / 3 (93.3%):  67%|██████▋   | 2/3 [00:11<00:05,  5.06s/it]Average Metric: 2.80 / 3 (93.3%): 100%|██████████| 3/3 [00:11<00:00,  2.84s/it]Average Metric: 2.80 / 3 (93.3%): 100%|██████████| 3/3 [00:11<00:00,  3.81s/it]
+2026/04/12 23:47:38 INFO dspy.evaluate.evaluate: Average Metric: 2.8 / 3 (93.3%)
+2026/04/12 23:47:38 INFO dspy.teleprompt.mipro_optimizer_v2: Score: 93.33 with parameters ['Predictor 0: Instruction 2', 'Predictor 0: Few-Shot Set 0'].
+2026/04/12 23:47:38 INFO dspy.teleprompt.mipro_optimizer_v2: Scores so far: [95.0, 100.0, 93.33]
+2026/04/12 23:47:38 INFO dspy.teleprompt.mipro_optimizer_v2: Best score so far: 100.0
+2026/04/12 23:47:38 INFO dspy.teleprompt.mipro_optimizer_v2: ========================
+
+
+2026/04/12 23:47:38 INFO dspy.teleprompt.mipro_optimizer_v2: ===== Trial 4 / 10 =====
+  0%|          | 0/3 [00:00<?, ?it/s]Question: What is an Entity-Relationship (ER) model?
+Example answer: An Entity-Relationship model is a conceptual data model used to
+  describe the structure of a database. It represents entities
+  (objects or concepts), attributes (properties of entities), and
+  relationships (associations between entities). ER diagrams visually
+  depict these components and are used as a blueprint for designing
+  relational database schemas.
+Predicted answer: An Entity-Relationship (ER) model is an abstract data model that
+  represents data in terms of entities and their relationships.
+  Entities represent specific data types (e.g., CUSTOMER), while
+  relationships show how these entities interact with one another. ER
+  diagrams visually depict these elements, making it easier to
+  understand the structure of the data. The model is beneficial for
+  designing databases, as it helps translate the structure into
+  relational tables, detailing entities, their attributes, and
+  associations.
+Rationale: The prediction answer parallels the example answer by explaining the
+  definition, components, and purpose of an ER model. It aligns
+  closely in content with slight variations in wording and additional
+  details on using ER models for relational tables, which do not
+  deviate from the primary concept provided in the example. Thus, it
+  merits a high recall score of 0.9 due to its coverage of significant
+  information with a consistent level of detail and minor differences.
+Score: 0.9
+
+Average Metric: 0.90 / 1 (90.0%):   0%|          | 0/3 [00:06<?, ?it/s]Average Metric: 0.90 / 1 (90.0%):  33%|███▎      | 1/3 [00:06<00:13,  6.66s/it]Question: What is the difference between structured, semi-structured, and
+  unstructured data?
+Example answer: Structured data has a predefined schema and fits neatly into rows and
+  columns, as in relational databases. Semi-structured data does not
+  conform to a rigid schema but has organisational properties such as
+  tags or markers (e.g., JSON, XML, CSV). Unstructured data has no
+  predefined format and includes text documents, images, audio, and
+  video, requiring specialised tools for storage and analysis.
+Predicted answer: The differences among structured, semi-structured, and unstructured
+  data are as follows: Structured data is highly organized, fits into
+  fixed fields within a database, and is easily searchable, like data
+  in relational databases (e.g., SQL tables). Semi-structured data
+  does not conform to a rigid schema but includes some organizational
+  elements, such as tags, making it less organized than structured
+  data (e.g., XML, JSON). Unstructured data lacks any predefined
+  format or structure, making it difficult to analyze and process;
+  examples include text files, images, and videos.
+Rationale: The prediction answer covers all the critical aspects mentioned in the
+  example answer, including the definitions and examples of each type
+  of data. It maintains the core information and meaning, giving no
+  reason to deduct points for missing content or incorrect
+  information. Therefore, the recall score is 1.0, indicating a
+  complete match in terms of content recall.
+Score: 1.0
+
+Average Metric: 1.90 / 2 (95.0%):  33%|███▎      | 1/3 [00:06<00:13,  6.66s/it]Average Metric: 1.90 / 2 (95.0%):  67%|██████▋   | 2/3 [00:06<00:02,  2.93s/it]Question: What are the ACID properties in database transactions?
+Example answer: ACID stands for Atomicity, Consistency, Isolation, and Durability.
+  Atomicity means a transaction is all-or-nothing. Consistency ensures
+  a transaction brings the database from one valid state to another.
+  Isolation means concurrent transactions do not interfere with each
+  other. Durability guarantees that committed transactions persist
+  even after system failures.
+Predicted answer: The ACID properties in database transactions are:  1. **Atomicity**:
+  Ensures that a transaction is completed entirely or not at all. 2.
+  **Consistency**: Guarantees that a transaction brings the database
+  from one valid state to another, maintaining all predefined rules.
+  3. **Isolation**: Ensures that concurrent transactions do not
+  interfere with each other. 4. **Durability**: Guarantees that once a
+  transaction is committed, its changes are permanent, even in the
+  event of a failure.
+Rationale: The prediction answer matches the example answer perfectly in terms of
+  content and meaning for all four of the ACID properties. Both
+  answers explain what Atomicity, Consistency, Isolation, and
+  Durability mean in the context of database transactions. The
+  variance in wording does not affect the correctness or completeness
+  of the information, hence the recall score is 1.0.
+Score: 1.0
+
+Average Metric: 2.90 / 3 (96.7%):  67%|██████▋   | 2/3 [00:07<00:02,  2.93s/it]Average Metric: 2.90 / 3 (96.7%): 100%|██████████| 3/3 [00:07<00:00,  2.35s/it]
+2026/04/12 23:47:46 INFO dspy.evaluate.evaluate: Average Metric: 2.9 / 3 (96.7%)
+2026/04/12 23:47:46 INFO dspy.teleprompt.mipro_optimizer_v2: Score: 96.67 with parameters ['Predictor 0: Instruction 1', 'Predictor 0: Few-Shot Set 5'].
+2026/04/12 23:47:46 INFO dspy.teleprompt.mipro_optimizer_v2: Scores so far: [95.0, 100.0, 93.33, 96.67]
+2026/04/12 23:47:46 INFO dspy.teleprompt.mipro_optimizer_v2: Best score so far: 100.0
+2026/04/12 23:47:46 INFO dspy.teleprompt.mipro_optimizer_v2: ========================
+
+
+2026/04/12 23:47:46 INFO dspy.teleprompt.mipro_optimizer_v2: ===== Trial 5 / 10 =====
+  0%|          | 0/3 [00:00<?, ?it/s]

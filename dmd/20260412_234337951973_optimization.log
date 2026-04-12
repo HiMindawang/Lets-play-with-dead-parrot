@@ -1,0 +1,365 @@
+2026/04/12 23:43:38 INFO dspy.teleprompt.mipro_optimizer_v2: 
+RUNNING WITH THE FOLLOWING LIGHT AUTO RUN SETTINGS:
+num_trials: 10
+minibatch: False
+num_fewshot_candidates: 6
+num_instruct_candidates: 3
+valset size: 3
+
+2026/04/12 23:43:38 INFO dspy.teleprompt.mipro_optimizer_v2: 
+==> STEP 1: BOOTSTRAP FEWSHOT EXAMPLES <==
+2026/04/12 23:43:38 INFO dspy.teleprompt.mipro_optimizer_v2: These will be used as few-shot example candidates for our program and for creating instructions.
+
+2026/04/12 23:43:38 INFO dspy.teleprompt.mipro_optimizer_v2: Bootstrapping N=6 sets of demonstrations...
+Bootstrapping set 1/6
+Bootstrapping set 2/6
+Bootstrapping set 3/6
+  0%|          | 0/6 [00:00<?, ?it/s]Question: What distinguishes relational databases from NoSQL databases?
+Example answer: Relational databases store data in structured tables with predefined
+  schemas and use SQL for querying. They enforce ACID transactions and
+  are ideal for structured data with complex relationships. NoSQL
+  databases (document, key-value, column-family, graph) offer flexible
+  schemas, horizontal scalability, and are optimised for unstructured
+  or semi-structured data, often trading some ACID guarantees for
+  performance and scalability.
+Predicted answer: Relational databases are characterized by a structured schema with
+  tables and enforce ACID properties for transactions. They rely on
+  SQL for complex queries. On the other hand, NoSQL databases use
+  various data structures (like key-value, document, or graph) and
+  prioritize availability and partition tolerance over strict
+  consistency, often providing flexibility for unstructured data and
+  simpler query languages.
+Rationale: The recall score of 0.9 reflects the prediction answer's strong
+  alignment with the example answer. It covers most of the critical
+  aspects such as relational databases' structured schema, SQL use,
+  ACID enforcement, and NoSQL databases' flexible data structures and
+  prioritization of performance and scalability aspects. While it does
+  not detail all types of NoSQL databases or mention horizontal
+  scalability explicitly, it includes important concepts like
+  availability, partition tolerance, and flexibility, which are
+  integral to understanding NoSQL databases. Therefore, while not
+  exhaustive, the answer captures most of the substantial points
+  warranting a high recall score.
+Score: 0.9
+
+ 17%|█▋        | 1/6 [00:09<00:45,  9.11s/it]Question: What is the CAP theorem?
+Example answer: The CAP theorem states that a distributed data store can only
+  simultaneously provide two of the three following guarantees:
+  Consistency (every read receives the most recent write),
+  Availability (every request receives a response), and Partition
+  tolerance (the system continues to operate despite network
+  partitions). This means distributed systems must trade off one of
+  these properties.
+Predicted answer: The CAP theorem, proposed by Eric Brewer, asserts that a distributed
+  data store cannot simultaneously achieve all three of the following
+  guarantees: Consistency (every read receives the most recent write
+  or an error), Availability (every request receives a response
+  without errors, but not necessarily the most recent write), and
+  Partition tolerance (the system continues to operate despite network
+  failures). In the case of a network partition, a choice must be made
+  between maintaining consistency or availability.
+Rationale: The recall score is set at 1.0 because the prediction answer fully
+  encompasses the critical elements provided in the example answer
+  related to the CAP theorem. It mentions all three components
+  (Consistency, Availability, Partition tolerance), the impossibility
+  of simultaneously achieving all three, and the necessary trade-offs
+  in distributed systems, thereby matching the depth of example
+  answer.
+Score: 1.0
+
+ 33%|███▎      | 2/6 [00:15<00:30,  7.51s/it]Question: What is data partitioning (sharding) in databases?
+Example answer: Data partitioning, or sharding, is the practice of splitting a large
+  database into smaller, more manageable pieces called partitions or
+  shards, each stored on a separate database node. Horizontal
+  partitioning splits rows across shards by a partition key, while
+  vertical partitioning splits columns. Sharding improves performance
+  and scalability by distributing the query load, but adds complexity
+  to data management and cross-shard queries.
+Predicted answer: Data partitioning (sharding) in databases is the process of dividing a
+  database into smaller, independent segments called shards, which can
+  be stored across multiple servers. This technique enhances
+  performance, scalability, and efficiency by distributing data and
+  allowing for parallel processing of queries, thus reducing the load
+  and improving response times.
+Rationale: The recall score is 0.8 because the prediction answer accurately
+  captures the main concepts of data partitioning and its benefits of
+  improving performance and scalability. However, it misses some
+  specifics mentioned in the example answer, such as the types of
+  partitioning (horizontal and vertical) and the added complexity in
+  data management and cross-shard queries. Therefore, while the
+  prediction is mostly aligned with the example, it lacks some
+  detailed aspects.
+Score: 0.8
+
+ 50%|█████     | 3/6 [00:21<00:19,  6.66s/it]Question: What are graph databases and when should they be used?
+Example answer: Graph databases store data as nodes (entities) and edges
+  (relationships), making them ideal for highly connected data. They
+  excel at traversing complex relationships efficiently, such as in
+  social networks, recommendation engines, fraud detection, and
+  knowledge graphs. Compared to relational databases, graph databases
+  avoid expensive JOIN operations by storing relationships as first-
+  class citizens.
+Predicted answer: Graph databases are databases that utilize graph structures to
+  represent and store data, consisting of nodes (entities), edges
+  (relationships), and properties (attributes). They should be used in
+  scenarios where relationships between data are vital, such as in
+  social networks, fraud detection, and recommendation engines, as
+  they excel in handling interconnected data and complex queries
+  efficiently.
+Rationale: Both answers discuss the main attributes of graph databases and
+  identify primary use cases, including social networks and fraud
+  detection. The prediction captures the need for handling
+  relationships and complex queries efficiently, similar to the
+  example. However, it lacks the specific mention of knowledge graphs
+  and the explanation of how graph databases avoid JOIN operations,
+  causing a reduction in score, while still providing a largely
+  accurate recall.
+Score: 0.8
+
+ 67%|██████▋   | 4/6 [00:26<00:12,  6.32s/it]Question: What is the difference between OLTP and OLAP?
+Example answer: OLTP (Online Transaction Processing) handles high volumes of short,
+  real-time transactions such as inserts, updates, and deletes,
+  optimised for fast query processing with normalised data. OLAP
+  (Online Analytical Processing) is designed for complex queries over
+  large historical datasets, typically using denormalised or
+  star/snowflake schemas, and is optimised for read-heavy analytical
+  workloads.
+Predicted answer: The main differences between OLTP and OLAP are as follows:   -
+  **Function**: OLTP is geared for transaction processing, while OLAP
+  is for analytics and decision support.   - **Database Structure**:
+  OLTP structures are defined by application requirements, whereas
+  OLAP structures are driven by decision-making needs.   - **Data
+  Properties**: OLTP data is up-to-date, isolated, and transactional,
+  while OLAP data is historical, aggregated, and multi-dimensional.
+  - **Workload**: OLTP workloads involve read-write operations,
+  whereas OLAP mainly involves read operations.   - **Operation**:
+  OLTP operates continuously, while OLAP operates in batches or
+  bursts.   - **Unit of Work**: OLTP focuses on simple, local
+  transactions, whereas OLAP handles complex, global calculations.   -
+  **Key Metrics**: OLTP measures success by transaction throughput,
+  while OLAP measures query response time.
+Rationale: The recall score is 1.0 because the prediction answer successfully
+  covers all the main points found in the example answer, without
+  missing any key aspects of OLTP and OLAP differences. It even
+  provides additional comprehensive comparison details that expand
+  upon the example's basis, reinforcing the predicted answer's
+  thoroughness in addressing the asked difference.
+Score: 1.0
+
+ 83%|████████▎ | 5/6 [00:35<00:07,  7.29s/it]Question: What is SQL and what are its main categories of commands?
+Example answer: SQL (Structured Query Language) is the standard language for managing
+  and querying relational databases. Its main categories are: DDL
+  (Data Definition Language) for creating and modifying schema objects
+  (CREATE, ALTER, DROP); DML (Data Manipulation Language) for querying
+  and modifying data (SELECT, INSERT, UPDATE, DELETE); DCL (Data
+  Control Language) for managing permissions (GRANT, REVOKE); and TCL
+  (Transaction Control Language) for managing transactions (COMMIT,
+  ROLLBACK).
+Predicted answer: SQL (Structured Query Language) is a standard language for querying
+  and managing relational databases. Its main categories of commands
+  include: - Data Definition Language (DDL): Commands that define the
+  database schema (e.g., CREATE, ALTER, DROP). - Data Manipulation
+  Language (DML): Commands for manipulating data (e.g., SELECT,
+  INSERT, UPDATE, DELETE). - Data Control Language (DCL): Commands
+  that control access to the data (e.g., GRANT, REVOKE).
+Rationale: The recall score of 0.75 reflects that the prediction answer covers
+  three out of the four categories of SQL commands mentioned in the
+  example answer. The prediction correctly identifies and explains
+  DDL, DML, and DCL with relevant examples, which constitutes 75% of
+  the main content provided by the example. However, it lacks coverage
+  of TCL, which accounts for the remaining 25% of the answer in the
+  context of the example's outlined categories, resulting in a partial
+  recall.
+Score: 0.75
+
+100%|██████████| 6/6 [00:42<00:00,  7.03s/it]100%|██████████| 6/6 [00:42<00:00,  7.08s/it]
+Bootstrapped 2 full traces after 5 examples for up to 1 rounds, amounting to 6 attempts.
+Bootstrapping set 4/6
+  0%|          | 0/6 [00:00<?, ?it/s]Question: What are graph databases and when should they be used?
+Example answer: Graph databases store data as nodes (entities) and edges
+  (relationships), making them ideal for highly connected data. They
+  excel at traversing complex relationships efficiently, such as in
+  social networks, recommendation engines, fraud detection, and
+  knowledge graphs. Compared to relational databases, graph databases
+  avoid expensive JOIN operations by storing relationships as first-
+  class citizens.
+Predicted answer: Graph databases are databases that store data in the form of graphs,
+  consisting of nodes (entities), edges (relationships), and
+  associated properties. They are particularly useful for applications
+  that involve complex and interconnected data, such as social
+  networks, recommendation systems, and fraud detection. Graph
+  databases should be used when representing relationships and
+  connections among data points is crucial, especially when deep
+  traversals or dynamic relationships need to be managed efficiently.
+Rationale: The recall score of 0.85 reflects that the prediction answer
+  accurately captures the core information provided in the example
+  answer. It identifies the main purpose of graph databases (storing
+  and traversing complex relationships), highlights similar use cases
+  (social networks, recommendation systems, fraud detection), and
+  articulates when graph databases should be prioritized over others.
+  However, it lacks specific mentions of knowledge graphs and the
+  technical specification regarding avoiding expensive JOIN
+  operations, which are present in the example answer.
+Score: 0.85
+
+ 17%|█▋        | 1/6 [00:06<00:31,  6.26s/it]Question: What is data partitioning (sharding) in databases?
+Example answer: Data partitioning, or sharding, is the practice of splitting a large
+  database into smaller, more manageable pieces called partitions or
+  shards, each stored on a separate database node. Horizontal
+  partitioning splits rows across shards by a partition key, while
+  vertical partitioning splits columns. Sharding improves performance
+  and scalability by distributing the query load, but adds complexity
+  to data management and cross-shard queries.
+Predicted answer: Data partitioning (sharding) in databases refers to the process of
+  dividing a large dataset into smaller, more manageable pieces called
+  shards, which can be distributed across multiple servers. This
+  method improves performance and scalability, allowing for concurrent
+  processing and reducing the load on any single server by ensuring
+  that queries can be executed on relevant shards, thus optimizing
+  resource utilization.
+Rationale: The recall score is 0.7 because the prediction answer contains the
+  essential elements of the example answer, such as the concept of
+  dividing the dataset into smaller parts (shards) across multiple
+  servers to enhance performance and scalability. However, it lacks
+  certain details present in the example answer, like the types of
+  partitioning (horizontal and vertical) and the complexities involved
+  with managing sharded data. These omissions prevent a higher recall
+  score.
+Score: 0.7
+
+ 33%|███▎      | 2/6 [00:11<00:22,  5.71s/it]Question: What is the difference between OLTP and OLAP?
+Example answer: OLTP (Online Transaction Processing) handles high volumes of short,
+  real-time transactions such as inserts, updates, and deletes,
+  optimised for fast query processing with normalised data. OLAP
+  (Online Analytical Processing) is designed for complex queries over
+  large historical datasets, typically using denormalised or
+  star/snowflake schemas, and is optimised for read-heavy analytical
+  workloads.
+Predicted answer: The primary differences between OLTP and OLAP are as follows: -
+  **Purpose**: OLTP focuses on transaction processing for routine
+  operations, while OLAP is geared towards complex analytics and
+  decision-making support. - **Database Structure**: OLTP databases
+  are structured based on application needs, whereas OLAP databases
+  are organized according to the analytical requirements. - **Data
+  Properties**: OLTP data is up-to-date, transactional, and isolated,
+  while OLAP data is typically historical, aggregated, and multi-
+  dimensional. - **Workload Characteristics**: OLTP handles continuous
+  and mostly read-write operations with a focus on transaction
+  throughput, whereas OLAP processes occur in batches or bursts,
+  predominantly involving read operations with high latency. - **Unit
+  of Work**: OLTP deals with simple, local transactions, while OLAP
+  manages complex, global data aggregations.
+Rationale: The recall score of 0.85 reflects that the prediction answer
+  successfully captures most critical aspects of OLTP and OLAP as
+  described in the example answer. The prediction elaborates more on
+  dimensions such as purpose, database structure, and data properties,
+  providing a nuanced coverage of the differences. However, it misses
+  explicitly mentioning the schema types used in OLAP as detailed in
+  the example answer, hence a slight deduction is warranted. Overall,
+  it demonstrates a strong recall of the detailed distinctions between
+  OLTP and OLAP.
+Score: 0.85
+
+ 50%|█████     | 3/6 [00:19<00:20,  6.71s/it]Question: What distinguishes relational databases from NoSQL databases?
+Example answer: Relational databases store data in structured tables with predefined
+  schemas and use SQL for querying. They enforce ACID transactions and
+  are ideal for structured data with complex relationships. NoSQL
+  databases (document, key-value, column-family, graph) offer flexible
+  schemas, horizontal scalability, and are optimised for unstructured
+  or semi-structured data, often trading some ACID guarantees for
+  performance and scalability.
+Predicted answer: The main distinctions between relational databases and NoSQL databases
+  include data structure, schema flexibility, and transaction
+  consistency. Relational databases use a fixed schema with tables and
+  relationships, ensuring ACID compliance, while NoSQL databases
+  employ various data models (e.g., key-value, document, graph) and
+  allow for more flexible, dynamic schemas without strict ACID
+  guarantees. Instead, NoSQL databases often utilize eventual
+  consistency, emphasizing availability and partition tolerance per
+  the CAP theorem.
+Rationale: The recall score of 0.95 reflects the high degree of overlap between
+  the example answer and the prediction. While both answers are
+  aligned in core content, with both discussing structured tables,
+  predefined schemas, ACID compliance for relational databases, and
+  flexibility and performance trade-offs in NoSQL, the prediction
+  answer includes additional details about data models and CAP theorem
+  concepts that add depth but do not detract from the core recall of
+  the essential points covered in the example.
+Score: 0.95
+
+ 67%|██████▋   | 4/6 [00:25<00:12,  6.44s/it] 67%|██████▋   | 4/6 [00:25<00:12,  6.38s/it]
+Bootstrapped 1 full traces after 4 examples for up to 1 rounds, amounting to 4 attempts.
+Bootstrapping set 5/6
+  0%|          | 0/6 [00:00<?, ?it/s]Question: What are graph databases and when should they be used?
+Example answer: Graph databases store data as nodes (entities) and edges
+  (relationships), making them ideal for highly connected data. They
+  excel at traversing complex relationships efficiently, such as in
+  social networks, recommendation engines, fraud detection, and
+  knowledge graphs. Compared to relational databases, graph databases
+  avoid expensive JOIN operations by storing relationships as first-
+  class citizens.
+Predicted answer: Graph databases are specialized databases that use graph structures to
+  represent and store data with relationships between entities. They
+  are particularly effective for applications with heavily
+  interconnected data, like social networks or recommendation systems,
+  where the relationships and connections between data points are
+  crucial to the analysis and querying process.
+Rationale: The prediction answer covers several key points from the example
+  answer, such as the definition of graph databases and their
+  applicability to interconnected data scenarios like social networks
+  and recommendation systems. However, it misses some specific use
+  cases like fraud detection and knowledge graphs mentioned in the
+  example. It also doesn't include a comparison to relational
+  databases. Due to these omissions, a recall score of 0.7 is
+  assigned, indicating that the prediction captures a substantial
+  portion of the example answer but not all of it.
+Score: 0.7
+
+ 17%|█▋        | 1/6 [00:05<00:26,  5.22s/it]Question: What is the CAP theorem?
+Example answer: The CAP theorem states that a distributed data store can only
+  simultaneously provide two of the three following guarantees:
+  Consistency (every read receives the most recent write),
+  Availability (every request receives a response), and Partition
+  tolerance (the system continues to operate despite network
+  partitions). This means distributed systems must trade off one of
+  these properties.
+Predicted answer: The CAP theorem, proposed by Eric Brewer, asserts that in a
+  distributed data store, you can only guarantee two out of the
+  following three properties: Consistency (every read returns the most
+  recent write), Availability (every request receives a response
+  without guarantee of the most recent write), and Partition tolerance
+  (the system continues to operate despite network partitioning). It
+  implies that during a network partition, you must choose between
+  consistency and availability.
+Rationale: The recall score is 1.0 because the prediction answer successfully
+  includes all the critical elements found in the example answer. It
+  explains the CAP theorem's essence, mentioning each of the three
+  properties and their trade-offs, thus retaining complete recall of
+  the example's content.
+Score: 1.0
+
+ 33%|███▎      | 2/6 [00:12<00:26,  6.55s/it]Question: What is SQL and what are its main categories of commands?
+Example answer: SQL (Structured Query Language) is the standard language for managing
+  and querying relational databases. Its main categories are: DDL
+  (Data Definition Language) for creating and modifying schema objects
+  (CREATE, ALTER, DROP); DML (Data Manipulation Language) for querying
+  and modifying data (SELECT, INSERT, UPDATE, DELETE); DCL (Data
+  Control Language) for managing permissions (GRANT, REVOKE); and TCL
+  (Transaction Control Language) for managing transactions (COMMIT,
+  ROLLBACK).
+Predicted answer: SQL is a standard language for querying and managing relational
+  databases. Its main categories of commands include: 1. Data
+  Definition Language (DDL) - for defining database schemas (e.g.,
+  CREATE, ALTER, DROP). 2. Data Manipulation Language (DML) - for
+  manipulating data within the database (e.g., SELECT, INSERT, UPDATE,
+  DELETE). 3. Data Control Language (DCL) - for controlling access to
+  data (e.g., GRANT, REVOKE).
+Rationale: The recall score is 0.75 because three out of the four main categories
+  of SQL commands mentioned in the example answer are also mentioned
+  in the prediction answer. The line of evaluation here considers the
+  presence of accurate key concepts from the example answer. The
+  missing category (TCL) accounts for the deduction in the recall
+  score.
+Score: 0.75
+
+ 50%|█████     | 3/6 [00:20<00:21,  7.21s/it] 50%|█████     | 3/6 [00:26<00:26,  8.75s/it]

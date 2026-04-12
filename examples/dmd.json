@@ -1,0 +1,50 @@
+[
+    {
+        "question": "What are the ACID properties in database transactions?",
+        "answer": "ACID stands for Atomicity, Consistency, Isolation, and Durability. Atomicity means a transaction is all-or-nothing. Consistency ensures a transaction brings the database from one valid state to another. Isolation means concurrent transactions do not interfere with each other. Durability guarantees that committed transactions persist even after system failures."
+    },
+    {
+        "question": "What is the CAP theorem?",
+        "answer": "The CAP theorem states that a distributed data store can only simultaneously provide two of the three following guarantees: Consistency (every read receives the most recent write), Availability (every request receives a response), and Partition tolerance (the system continues to operate despite network partitions). This means distributed systems must trade off one of these properties."
+    },
+    {
+        "question": "What is the difference between OLTP and OLAP?",
+        "answer": "OLTP (Online Transaction Processing) handles high volumes of short, real-time transactions such as inserts, updates, and deletes, optimised for fast query processing with normalised data. OLAP (Online Analytical Processing) is designed for complex queries over large historical datasets, typically using denormalised or star/snowflake schemas, and is optimised for read-heavy analytical workloads."
+    },
+    {
+        "question": "What is an Entity-Relationship (ER) model?",
+        "answer": "An Entity-Relationship model is a conceptual data model used to describe the structure of a database. It represents entities (objects or concepts), attributes (properties of entities), and relationships (associations between entities). ER diagrams visually depict these components and are used as a blueprint for designing relational database schemas."
+    },
+    {
+        "question": "What distinguishes relational databases from NoSQL databases?",
+        "answer": "Relational databases store data in structured tables with predefined schemas and use SQL for querying. They enforce ACID transactions and are ideal for structured data with complex relationships. NoSQL databases (document, key-value, column-family, graph) offer flexible schemas, horizontal scalability, and are optimised for unstructured or semi-structured data, often trading some ACID guarantees for performance and scalability."
+    },
+    {
+        "question": "What is database normalisation and why is it important?",
+        "answer": "Database normalisation is the process of organising a relational database to reduce data redundancy and improve data integrity. It involves decomposing tables into smaller, well-structured tables following normal forms (1NF, 2NF, 3NF, BCNF, etc.). Normalisation prevents update, insertion, and deletion anomalies, making the database easier to maintain and more consistent."
+    },
+    {
+        "question": "What are graph databases and when should they be used?",
+        "answer": "Graph databases store data as nodes (entities) and edges (relationships), making them ideal for highly connected data. They excel at traversing complex relationships efficiently, such as in social networks, recommendation engines, fraud detection, and knowledge graphs. Compared to relational databases, graph databases avoid expensive JOIN operations by storing relationships as first-class citizens."
+    },
+    {
+        "question": "What is SQL and what are its main categories of commands?",
+        "answer": "SQL (Structured Query Language) is the standard language for managing and querying relational databases. Its main categories are: DDL (Data Definition Language) for creating and modifying schema objects (CREATE, ALTER, DROP); DML (Data Manipulation Language) for querying and modifying data (SELECT, INSERT, UPDATE, DELETE); DCL (Data Control Language) for managing permissions (GRANT, REVOKE); and TCL (Transaction Control Language) for managing transactions (COMMIT, ROLLBACK)."
+    },
+    {
+        "question": "What is the difference between structured, semi-structured, and unstructured data?",
+        "answer": "Structured data has a predefined schema and fits neatly into rows and columns, as in relational databases. Semi-structured data does not conform to a rigid schema but has organisational properties such as tags or markers (e.g., JSON, XML, CSV). Unstructured data has no predefined format and includes text documents, images, audio, and video, requiring specialised tools for storage and analysis."
+    },
+    {
+        "question": "What is distributed computing and how does it relate to databases?",
+        "answer": "Distributed computing involves multiple networked computers working together to process data or run applications. In databases, distributed systems spread data across multiple nodes to improve scalability, availability, and fault tolerance. Distributed databases must handle challenges such as data replication, consistency (as defined by the CAP theorem), partitioning (sharding), and network failures."
+    },
+    {
+        "question": "What is data partitioning (sharding) in databases?",
+        "answer": "Data partitioning, or sharding, is the practice of splitting a large database into smaller, more manageable pieces called partitions or shards, each stored on a separate database node. Horizontal partitioning splits rows across shards by a partition key, while vertical partitioning splits columns. Sharding improves performance and scalability by distributing the query load, but adds complexity to data management and cross-shard queries."
+    },
+    {
+        "question": "What is the role of indexes in database performance?",
+        "answer": "Indexes are data structures that improve the speed of data retrieval operations on a database table. They work like a book index, allowing the database engine to locate rows without scanning the entire table. Common index types include B-tree, hash, and full-text indexes. While indexes speed up reads and lookups, they add overhead to write operations (INSERT, UPDATE, DELETE) and consume additional storage."
+    }
+]
